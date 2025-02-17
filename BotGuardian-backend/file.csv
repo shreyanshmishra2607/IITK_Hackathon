@@ -1,0 +1,7 @@
+id,default_profile,favourites_count,followers_count,friends_count,geo_enabled,statuses_count,verified,average_tweets_per_day,account_age_days
+user1,FALSE,4,1589,4,FALSE,11041,FALSE,7.87,1403
+user2,FALSE,536,860,880,FALSE,252,FALSE,0.183,1379
+user3,FALSE,3307,172,594,TRUE,1001,FALSE,0.864,1159
+user4,TRUE,8433,517,633,TRUE,1324,FALSE,0.889,1489
+user5,FALSE,88,753678,116,TRUE,4202,TRUE,1.339,3138
+user6,TRUE,237,27394,542,FALSE,11513,FALSE,8.428,1366

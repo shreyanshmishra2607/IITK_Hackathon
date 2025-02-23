@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import ModelMetrics from "@/components/ModelMetrics";
 
 export default function AboutProject() {
   return (
@@ -32,7 +33,7 @@ export default function AboutProject() {
             >
               <Card className="backdrop-blur-sm bg-card/50">
                 <CardHeader>
-                  <CardTitle>Real-Time Detection</CardTitle>--
+                  <CardTitle>Real-Time Detection</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">Our system detects bot attacks as they happen, providing instant alerts and automated responses.</p>
@@ -74,6 +75,7 @@ export default function AboutProject() {
           </div>
         </section>
       </motion.div>
+      <ModelMetrics />
     </div>
   );
 }

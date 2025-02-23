@@ -24,7 +24,7 @@ export function Navbar() {
               <div className="flex items-center space-x-2 cursor-pointer transition-transform duration-200 hover:scale-105">
                 <Bot className="h-6 w-6 text-primary" />
                 <span className="text-lg font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
-                  BotDetect
+                  BotGuardian
                 </span>
               </div>
             </Link>

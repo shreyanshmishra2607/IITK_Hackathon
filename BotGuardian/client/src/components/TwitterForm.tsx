@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/ui/Loader";
 import { motion } from "framer-motion";
 
+// const API_URL = import.meta.env.VITE_API_URL;
+
 const formSchema = z.object({
   handle: z
     .string()
@@ -35,7 +37,7 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Hook form initialization
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,7 +50,7 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
-    
+
     try {
       console.log("Sending request with payload:", { username: values.handle });
 
@@ -56,7 +58,7 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
       const formData = new FormData();
       formData.append("username", values.handle);
 
-      const response = await fetch("http://localhost:8000/predict-user/", {
+      const response = await fetch(`https://botguardian-backend.onrender.com/predict-user/`, {
         method: "POST",
         body: formData, // Send form-data instead of JSON
       });
@@ -128,17 +130,34 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
           <motion.h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
             Analysis Result
           </motion.h2>
-          <motion.div
+          <motion.table
             key={analysisResult.id}
-            className="mb-2 flex items-center justify-between"
+            className="mb-2 items-center w-full justify-between"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-sm w-1/3 font-medium">{analysisResult.id}</p>
-            <p className="text-sm w-1/3 font-medium">{analysisResult.bot_probability}%</p>
-            <p className="text-sm w-1/3 font-medium">{getLabel(analysisResult.bot_probability)}</p>
-          </motion.div>
+            <thead>
+            <tr className="bg-gray-700 text-lg">
+              <th className="p-1 md:p-2  border border-gray-600">User Handle</th>
+              <th className="p-1 md:p-2  border border-gray-600">Chance Of being a bot</th>
+              <th className="p-1 md:p-2  border border-gray-600">Final Prediction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <motion.tr
+              key={analysisResult.id}
+              className="border border-gray-700 text-md"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <td className="p-1 md:p-2  border border-gray-600 text-center">{"@"}{analysisResult.id}</td>
+              <td className="p-1 md:p-2  border border-gray-600 text-center">{analysisResult.bot_probability}%</td>
+              <td className="p-1 md:p-2  border border-gray-600 text-center">{getLabel(analysisResult.bot_probability)}</td>
+            </motion.tr>
+          </tbody>
+          </motion.table>
         </motion.div>
       )}
     </div>

@@ -61,7 +61,7 @@ export default function ModelMetrics() {
       transition={{ duration: 0.5 }}
     >
       <motion.h1 className="text-4xl font-bold mb-4 text-center">ML Model Metrics</motion.h1>
-      <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+      <div className="bg-gray-800 p-6 rounded-lg shadow-md overflow-x-auto">
         <pre className="text-lg">Accuracy: {data?.accuracy.toFixed(2)}</pre>
         <pre className="text-lg">ROC AUC: {data?.roc_auc.toFixed(2)}</pre>
 

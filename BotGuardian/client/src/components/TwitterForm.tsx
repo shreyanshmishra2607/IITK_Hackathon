@@ -58,7 +58,7 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
       const formData = new FormData();
       formData.append("username", values.handle);
 
-      const response = await fetch(`https://botguardian-backend.onrender.com/predict-user/`, {
+      const response = await fetch(`localhost:8000/predict-user/`, {
         method: "POST",
         body: formData, // Send form-data instead of JSON
       });
